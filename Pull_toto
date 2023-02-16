@@ -1,0 +1,38 @@
+import requests
+import base64
+from bs4 import BeautifulSoup
+
+with open('data.txt', 'w') as file:
+
+    for x in range(1,3844):
+        query_string = f"DrawNumber={x}"
+        print(query_string)
+        query_string = query_string.encode('ascii')
+        query_string = base64.b64encode(query_string)
+        query_string = query_string.decode('ascii')
+        str(query_string)
+        url = 'https://www.singaporepools.com.sg/en/product/sr/Pages/toto_results.aspx?sppl='
+        response = requests.get(url+query_string)
+        print (url + query_string)
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+       # Find the table that contains the Toto results
+        table = soup.find('table', {'class': 'table table-striped'})
+        try:
+       # Extract the rows of the table
+            rows = table.find_all('tr')
+            toto_results = []
+        except:
+            continue
+
+    # Loop through the rows and extract the Toto numbers for each draw
+        for row in rows[1:]:
+            try:
+                cells = row.find_all('td')
+                draw_date = x
+                numbers = [int(cell.text) for cell in cells[0:7]]
+                file.write(f"{x} {numbers}\n")
+                toto_results.append({'date': draw_date, 'numbers': numbers})
+                print (numbers)
+            except Exception:
+                pass
