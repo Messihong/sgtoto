@@ -1,0 +1,30 @@
+import itertools
+import random
+import re
+
+with open('data.txt', 'r') as f:
+    matchs_original = f.read().split('\n')
+    matches = re.findall(r'\[(\d+(?:, ?\d+)*)\]', str(matchs_original))
+    duplicates = []
+
+    for item in matches:
+        if matches.count(item) > 1 and item not in duplicates:
+            duplicates.append(item)
+
+    if duplicates:
+        print("Duplicate items found:", duplicates)
+    else:
+        print("No duplicate items found.")
+    existing_combinations = set(matches)
+
+numbers = list(range(1, 49))
+new_combinations = set()
+
+while len(new_combinations) < 6:
+    random.shuffle(numbers)
+    new_combination = tuple(sorted(numbers[:6]))
+    if new_combination not in existing_combinations and new_combination not in new_combinations:
+        new_combinations.add(new_combination)
+
+print(new_combinations)
+
