@@ -1,4 +1,4 @@
-<h3 align="left">sgtoto project is a just for fun, one day my wife was joking SG too expense only win lotery can survie, so she always came up with some simle and random ideals and Then I converted into python code.</h3>
+<h3 align="left">sgtoto project is just for fun, one day my wife was joking SG too expense only win lotery can survie, so she always came up with some simle and random ideals and Then I converted into python code.</h3>
 
 
 Pull_toto_hisotry // pull 3.8 toto history result from toto website, wirte into data.txt</p>
