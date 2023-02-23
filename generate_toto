@@ -1,3 +1,5 @@
+//generate 6 number toto without dupplicate 2 any history result.
+
 import itertools
 import random
 import re
