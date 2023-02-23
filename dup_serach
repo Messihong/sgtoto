@@ -1,0 +1,21 @@
+import random
+import re
+
+# read data.txt all numbers in to a list
+# if any item count > 1 will add to duplicates list
+
+with open('data.txt', 'r') as f:
+    matchs_original = f.read().split('\n')
+    matches = re.findall(r'\[(\d+(?:, ?\d+)*)\]', str(matchs_original))
+    duplicates = []
+
+    for item in matches:
+        if matches.count(item) > 1 and item not in duplicates:
+            duplicates.append(item)
+            count = matches.count(item)
+
+    if duplicates:
+        print("Duplicate items found:", duplicates,count)
+    else:
+        print("No duplicate items found.")
+    existing_combinations = set(matches)
