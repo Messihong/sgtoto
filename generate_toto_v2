@@ -1,0 +1,30 @@
+import random
+import re
+import itertools
+
+numbers = list(range(1, 49))
+new_combinations = set()
+
+
+
+with open('my_list.txt', 'r') as f:
+    matchs_original = f.read().split('\n')
+
+full_list = []
+for item in matchs_original:
+    if len(item) > 5:
+        item_converted_list = [int(num) for num in item.split(',')]
+        full_list.append(item_converted_list)
+        # combos = itertools.combinations(item_converted_list,5)
+        # for combo in combos:
+        #     combo = ",".join(str(x) for x in combo)
+        #     full_list.append(combo)
+numbers = list(range(1, 49))
+new_combinations = set()
+
+while len(new_combinations) < 6:
+    random.shuffle(numbers)
+    new_combination = tuple(sorted(numbers[:6]))
+    if new_combination[:5] not in full_list and new_combination not in new_combinations and new_combination[1:6] not in full_list:
+        new_combinations.add(new_combination)
+print(new_combinations)
